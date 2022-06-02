@@ -54,6 +54,7 @@ namespace NetFive._1Records
 
         public Developer(string FirstName, string LastName, string Title) : base(FirstName, LastName)
         {
+            this.Title = Title;
         }
     }
 

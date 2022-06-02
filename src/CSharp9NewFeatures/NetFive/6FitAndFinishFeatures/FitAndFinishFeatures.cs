@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,30 +30,32 @@ namespace NetFive._6FitAndFinishFeatures
 
         //Before Static Anonymous Functions
 
-        /*string _text = "{0} is a beautiful country !";
+        //string text = "{0} is a beautiful country !";
 
-        void PromoteCountry(Func<string, string> func)
-        {
-            var countries = new List<string> { "Canada", "France", "Japan" };
+        //void PromoteCountry(Func<string, string> func)
+        //{
+        //    var countries = new List<string> { "Canada", "France", "Japan" };
 
-            foreach (var country in countries)
-                Console.WriteLine(func(country));
-        }
-        PromoteCountry(country => string.Format(this._text, country));*/
+        //    foreach (var country in countries)
+        //        Console.WriteLine(func(country));
+        //}
+        //PromoteCountry(country => string.Format(this.text, country));
 
-        //After Static Anonymous Functions
 
-        /* const string text = "{0} is a beautiful country !"; // text must be declared as const
 
-           void PromoteCountry(Func<string, string> func)
-           {
-               var countries = new List<string> { "Canada", "France", "Japan" };
+        ////After Static Anonymous Functions
 
-               foreach (var country in countries)
-                   Console.WriteLine(func(country));
-           }
+        //const string text = "{0} is a beautiful country !"; // text must be declared as const
 
-           PromoteCountry(static country => string.Format(text, country)); // text is no */
+        //void PromoteCountry(Func<string, string> func)
+        //{
+        //    var countries = new List<string> { "Canada", "France", "Japan" };
+
+        //    foreach (var country in countries)
+        //        Console.WriteLine(func(country));
+        //}
+
+        //PromoteCountry(static country => string.Format(text, country)); 
 
 
         // ************** 3.Target-Typed Conditional Expression **************
@@ -63,11 +66,42 @@ namespace NetFive._6FitAndFinishFeatures
         //    Console.WriteLine("{0}: {1}", number.GetType(), number);
         //}
 
-        //Secondly, we change method signature using short.
-        public static void Print(short number)
-        {
-            Console.WriteLine("{0}: {1}", number.GetType(), number); //CS1503	Argument 1: cannot convert from 'int' to 'short'
-        }
+        ////Secondly, we change method signature using short.
+        //public static void Print(short number)
+        //{
+        //    Console.WriteLine("{0}: {1}", number.GetType(), number); //CS1503	Argument 1: cannot convert from 'int' to 'short'
+        //}
 
+
+        // ********* 4.CovariantReturnTypes *******
+        // Go to CovariantReturnTypes.cs
+
+
+        // ********* 6. Lambda Discard Parameters
+        //Allow discards(_) to be used as parameters of lambdas and anonymous methods.For example:
+
+        //(_, _) => 0
+        //(int _, int _) => 0
+
+        //anonymous methods:
+        //delegate (int _, int _) { return 0; }
+
+        //var handler = (object _, EventArgs _) => ShowDialog();
+
+
+        // ********* 7. Attributes on local functions
+
+        static void Main()
+        {
+            [Conditional("DEBUG")] //This is new feature. We can add attributes into local functions.
+            static void DoAction()
+            {
+                // Perform action
+
+                Console.WriteLine("Performing action");
+            }
+
+            DoAction();
+        }
     }
 }
